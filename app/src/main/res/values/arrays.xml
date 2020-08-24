@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="bank_arrays">
+        <item>BCA</item>
+        <item>Mandiri</item>
+        <item>BRI</item>
+        <item>BNI</item>
+        <item>CIMB Niaga</item>
+        <item>BTPN</item>
+        <item>Permata</item>
+    </string-array>
+</resources>
