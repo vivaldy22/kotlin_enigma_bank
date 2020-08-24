@@ -42,12 +42,12 @@ class UserHomeFragment : Fragment() {
             val bundle = Bundle()
             bundle.putInt("user_owner_id", user.login_owner_id)
 
-            Navigation.findNavController(view).navigate(R.id.action_userHomeFragment_to_transactionDestinationInputFragment, bundle)
+            Navigation.findNavController(view).navigate(R.id.action_to_transactionDestinationInputFragment, bundle)
         }
 
         history_button.setOnClickListener {
             transactionViewModel.getTransactionsByUserOwnerID(user.login_owner_id.toString())
-            Navigation.findNavController(view).navigate(R.id.action_userHomeFragment_to_transactionHistoryFragment)
+            Navigation.findNavController(view).navigate(R.id.action_to_transactionHistoryFragment)
         }
 
         phone_button.setOnClickListener {

@@ -49,8 +49,10 @@ class LoginFragment : Fragment() {
                 for (user in users) {
                     if (user.username == inputUsername && user.password == inputPassword) {
                         userViewModel.getUserByID(user.login_id)
-                        Toast.makeText(activity, "Welcome ${inputUsername}!", Toast.LENGTH_SHORT).show()
-                        navController.navigate(R.id.action_loginFragment_to_transactionActivity)
+                        userViewModel.user.observe(viewLifecycleOwner, Observer {
+                            Toast.makeText(activity, "Welcome ${inputUsername}!", Toast.LENGTH_SHORT).show()
+                            navController.navigate(R.id.action_to_userHomeFragment)
+                        })
                     }
                 }
             }
