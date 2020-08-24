@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_userHomeFragment_to_transactionDestinationInputFragment"
             app:destination="@id/transactionDestinationInputFragment" />
+        <action
+            android:id="@+id/action_userHomeFragment_to_transactionHistoryFragment"
+            app:destination="@id/transactionHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/transactionDestinationInputFragment"
@@ -32,4 +35,9 @@
             android:id="@+id/action_transactionAmountInputFragment_to_userHomeFragment"
             app:destination="@id/userHomeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/transactionHistoryFragment"
+        android:name="com.example.enigma_bank.ui.transaction.screen.TransactionHistoryFragment"
+        android:label="fragment_transaction_history"
+        tools:layout="@layout/fragment_transaction_history" />
 </navigation>

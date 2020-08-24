@@ -29,36 +29,37 @@ class TransactionAmountInputFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userOwnerID = arguments?.getInt("user_owner_id")
-        val destination = arguments?.getString("destination")
-        val amount = transaction_amount.text.toString()
-        val description = transaction_description.text.toString()
+        transaction_next_button2.setOnClickListener {
+            val userOwnerID = arguments?.getInt("user_owner_id")
+            val destination = arguments?.getString("destination")
+            val amount = transaction_amount.text
+            val description = transaction_description.text
 
-        if (amount.isEmpty() || description.isEmpty()) {
-            Toast.makeText(activity, "Amount and description must be filled!", Toast.LENGTH_SHORT)
-                .show()
-        } else {
-            val current = LocalDateTime.now()
-            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-            val formatted = current.format(formatter)
-            println("==================DATA===================")
-            println(userOwnerID)
-            println(formatted)
-            println(destination)
-            println(amount)
-            println(description)
+            if (amount!!.isEmpty() || description!!.isEmpty()) {
+                Toast.makeText(
+                    activity,
+                    "Amount and description must be filled!",
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
+            } else {
+                val current = LocalDateTime.now()
+                val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+                val formatted = current.format(formatter)
 
-//            transactionViewModel.createTransaction(
-//                Transaction(
-//                    user_owner_id = userOwnerID!!,
-//                    trans_date = formatted,
-//                    destination = destination!!,
-//                    amount = amount.toInt(),
-//                    description = description
-//                )
-//            )
+                transactionViewModel.createTransaction(
+                    Transaction(
+                        user_owner_id = userOwnerID!!,
+                        trans_date = formatted,
+                        destination = destination!!,
+                        amount = amount.toString().toInt(),
+                        description = description.toString()
+                    )
+                )
 
-//            Navigation.findNavController(view).navigate(R.id.action_transactionAmountInputFragment_to_userHomeFragment)
+                Navigation.findNavController(view)
+                    .navigate(R.id.action_transactionAmountInputFragment_to_userHomeFragment)
+            }
         }
     }
 

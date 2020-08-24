@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.example.enigma_bank.R
+import com.example.enigma_bank.ui.transaction.TransactionViewModel
 import com.example.enigma_bank.ui.user.User
 import com.example.enigma_bank.ui.user.UserViewModel
 import kotlinx.android.synthetic.main.fragment_user_home.*
@@ -18,7 +19,8 @@ import kotlinx.android.synthetic.main.fragment_user_home.*
 class UserHomeFragment : Fragment() {
 
     private val userViewModel by activityViewModels<UserViewModel>()
-    private lateinit var user: User
+    private val transactionViewModel by activityViewModels<TransactionViewModel>()
+    private var user: User = User()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +46,8 @@ class UserHomeFragment : Fragment() {
         }
 
         history_button.setOnClickListener {
-
+            transactionViewModel.getTransactionsByUserOwnerID(user.login_owner_id.toString())
+            Navigation.findNavController(view).navigate(R.id.action_userHomeFragment_to_transactionHistoryFragment)
         }
 
         phone_button.setOnClickListener {
