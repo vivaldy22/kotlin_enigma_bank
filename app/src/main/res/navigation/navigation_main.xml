@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/loginFragment">
+
+    <action
+        android:id="@+id/action_to_userHomeFragment"
+        app:destination="@id/userHomeFragment" />
+    <action
+        android:id="@+id/action_to_transactionDestinationInputFragment"
+        app:destination="@id/transactionDestinationInputFragment" />
+    <action
+        android:id="@+id/action_to_transactionHistoryFragment"
+        app:destination="@id/transactionHistoryFragment" />
+    <action
+        android:id="@+id/action_to_transactionAmountInputFragment"
+        app:destination="@id/transactionAmountInputFragment" />
+    <action
+        android:id="@+id/action_to_transactionSuccessFragment"
+        app:destination="@id/transactionSuccessFragment" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.enigma_bank.ui.login.screen.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+    </fragment>
+    <fragment
+        android:id="@+id/userHomeFragment"
+        android:name="com.example.enigma_bank.ui.user.screen.UserHomeFragment"
+        android:label="fragment_user_home"
+        tools:layout="@layout/fragment_user_home" >
+    </fragment>
+    <fragment
+        android:id="@+id/transactionHistoryFragment"
+        android:name="com.example.enigma_bank.ui.transaction.screen.TransactionHistoryFragment"
+        android:label="fragment_transaction_history"
+        tools:layout="@layout/fragment_transaction_history" />
+    <fragment
+        android:id="@+id/transactionDestinationInputFragment"
+        android:name="com.example.enigma_bank.ui.transaction.screen.TransactionDestinationInputFragment"
+        android:label="fragment_transaction_destination_input"
+        tools:layout="@layout/fragment_transaction_destination_input" >
+    </fragment>
+    <fragment
+        android:id="@+id/transactionAmountInputFragment"
+        android:name="com.example.enigma_bank.ui.transaction.screen.TransactionAmountInputFragment"
+        android:label="fragment_transaction_amount_input"
+        tools:layout="@layout/fragment_transaction_amount_input" >
+    </fragment>
+    <fragment
+        android:id="@+id/transactionSuccessFragment"
+        android:name="com.example.enigma_bank.ui.transaction.screen.TransactionSuccessFragment"
+        android:label="fragment_transaction_success"
+        tools:layout="@layout/fragment_transaction_success" >
+    </fragment>
+</navigation>

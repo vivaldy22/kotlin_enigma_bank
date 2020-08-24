@@ -1,4 +1,4 @@
-package com.example.enigma_bank.domains.login
+package com.example.enigma_bank.ui.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

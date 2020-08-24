@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">enigma_bank</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="img_desc_username_icon">username icon</string>
+    <string name="img_desc_password_icon">password icon</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="balance_200">$ 200</string>
+    <string name="btn_next">NEXT</string>
+    <string name="hint_receiver_s_name">Receiver\'s Name</string>
+    <string name="hint_description">Description</string>
+    <string name="hint_amount">Amount</string>
+    <string name="template_2020_08_24_15_14_30">2020-08-24 15:14:30</string>
+    <string name="template_amount_30">$30</string>
+    <string name="transfer_success">Transfer Success</string>
+    <string name="btn_done">DONE</string>
 </resources>

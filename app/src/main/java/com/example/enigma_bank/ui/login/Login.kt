@@ -1,4 +1,4 @@
-package com.example.enigma_bank.domains.login
+package com.example.enigma_bank.ui.login
 
 class Login (
     var login_id: Int = 0,
