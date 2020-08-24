@@ -1,4 +1,4 @@
-package com.example.enigma_bank.domains.login.screen
+package com.example.enigma_bank.ui.login.screen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
