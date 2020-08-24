@@ -48,8 +48,8 @@ class LoginFragment : Fragment() {
             } else {
                 for (user in users) {
                     if (user.username == inputUsername && user.password == inputPassword) {
+                        userViewModel.getUserByID(user.login_id)
                         Toast.makeText(activity, "Welcome ${inputUsername}!", Toast.LENGTH_SHORT).show()
-                        userViewModel.getUserByID(user.login_id.toString())
                         navController.navigate(R.id.action_loginFragment_to_transactionActivity)
                     }
                 }

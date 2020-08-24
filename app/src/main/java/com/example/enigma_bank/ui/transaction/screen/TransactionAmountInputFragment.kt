@@ -46,6 +46,11 @@ class TransactionAmountInputFragment : Fragment() {
                 val current = LocalDateTime.now()
                 val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
                 val formatted = current.format(formatter)
+                println(userOwnerID)
+                println(destination)
+                println(amount)
+                println(description)
+                println(formatted)
 
                 transactionViewModel.createTransaction(
                     Transaction(

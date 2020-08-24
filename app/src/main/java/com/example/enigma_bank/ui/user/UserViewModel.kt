@@ -15,7 +15,7 @@ class UserViewModel : ViewModel() {
 
     val user: LiveData<User> = userRepo.user
 
-    fun getUserByID(id: String) {
+    fun getUserByID(id: Int) {
         userRepo.getUserByID(id)
     }
 
