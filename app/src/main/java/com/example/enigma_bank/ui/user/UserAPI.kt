@@ -1,14 +1,12 @@
 package com.example.enigma_bank.ui.user
 
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.PUT
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface UserAPI {
 
-    @GET("user/{id}")
-    fun getUserByID(@Path("id") id: Int): Call<User>
+    @GET("users/{id}")
+    fun getUserByID(@Header("Authorization") token: String, @Path("id") id: String): Call<User>
 
     @PUT("user/{id}")
     fun updateUser(@Path("id") id: Int): Call<User>

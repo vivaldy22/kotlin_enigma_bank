@@ -15,8 +15,9 @@ class UserViewModel : ViewModel() {
 
     val user: LiveData<User> = userRepo.user
 
-    fun getUserByID(id: Int) {
-        userRepo.getUserByID(id)
+    fun getUserByID(token: String, id: String) {
+        val authToken = "Bearer $token"
+        userRepo.getUserByID(authToken, id)
     }
 
 }

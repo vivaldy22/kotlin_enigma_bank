@@ -47,6 +47,10 @@ class LoginFragment : Fragment() {
 
         navController = Navigation.findNavController(view)
 
+        if (sharedPreferences!!.contains(getString(R.string.auth_token))) {
+            navController.navigate(R.id.action_to_userHomeFragment)
+        }
+
         login_button.setOnClickListener {
             val inputUsername = login_username_input.text.toString()
             val inputPassword = login_password_input.text.toString()
@@ -57,10 +61,20 @@ class LoginFragment : Fragment() {
                 loginViewModel.login(Login(inputUsername, inputPassword))
                 loginViewModel.userData.observe(viewLifecycleOwner, {
                     if (it != null) {
-                        println("LEVEL ${it.user.user_level}")
                         if (it.user.user_level == "2") {
-                            Toast.makeText(activity, "Welcome ${it.user.user_f_name}!", Toast.LENGTH_SHORT).show()
-                            navController.navigate(R.id.action_to_userHomeFragment)
+                            with(sharedPreferences?.edit()) {
+                                this?.putString(
+                                    getString(R.string.auth_token),
+                                    it.token
+                                )
+                                this?.putString(
+                                    getString(R.string.user_id),
+                                    it.user.user_id
+                                )
+                                Toast.makeText(activity, "Welcome ${it.user.user_f_name}!", Toast.LENGTH_SHORT).show()
+                                navController.navigate(R.id.action_to_userHomeFragment)
+                                this?.apply()
+                            }
                         }
                     } else {
                         Toast.makeText(activity, "Username atau Password salah", Toast.LENGTH_SHORT).show()

@@ -46,32 +46,32 @@ class TransactionAmountInputFragment : Fragment() {
                 )
                     .show()
             } else {
-                userViewModel.user.observe(viewLifecycleOwner, Observer {
-                    if (userViewModel.user.value!!.balance >= amount.toString().toInt()) {
-                        val current = LocalDateTime.now()
-                        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-                        val formatted = current.format(formatter)
-
-                        transactionViewModel.createTransaction(
-                            Transaction(
-                                user_owner_id = it.user_id,
-                                trans_date = formatted,
-                                destination = destination!!,
-                                amount = amount.toString().toInt(),
-                                description = description.toString()
-                            )
-                        )
-
-                        it.balance -= amount.toString().toInt()
-
-                        Navigation.findNavController(view)
-                            .navigate(R.id.action_to_transactionSuccessFragment)
-                    } else {
-                        Toast.makeText(activity, "Not enough balance on your account!", Toast.LENGTH_SHORT).show()
-                        Navigation.findNavController(view)
-                            .navigate(R.id.action_to_userHomeFragment)
-                    }
-                })
+//                userViewModel.user.observe(viewLifecycleOwner, Observer {
+//                    if (userViewModel.user.value!!.user_balance.toInt() >= amount.toString().toInt()) {
+//                        val current = LocalDateTime.now()
+//                        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+//                        val formatted = current.format(formatter)
+//
+//                        transactionViewModel.createTransaction(
+//                            Transaction(
+//                                user_owner_id = it.user_id,
+//                                trans_date = formatted,
+//                                destination = destination!!,
+//                                amount = amount.toString().toInt(),
+//                                description = description.toString()
+//                            )
+//                        )
+//
+//                        it.balance -= amount.toString().toInt()
+//
+//                        Navigation.findNavController(view)
+//                            .navigate(R.id.action_to_transactionSuccessFragment)
+//                    } else {
+//                        Toast.makeText(activity, "Not enough balance on your account!", Toast.LENGTH_SHORT).show()
+//                        Navigation.findNavController(view)
+//                            .navigate(R.id.action_to_userHomeFragment)
+//                    }
+//                })
             }
         }
     }
