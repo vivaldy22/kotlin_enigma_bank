@@ -13,10 +13,14 @@ class LoginViewModel : ViewModel() {
         loginRepo = LoginRepository(loginAPI)
     }
 
-    val allLogin: LiveData<List<Login>> = loginRepo.allLogin
+    val userData: LiveData<LoginResponse> = loginRepo.userData
 
-    fun getAllLogin() {
-        loginRepo.getAllLogin()
+    fun login(loginData: Login) {
+        loginRepo.login(loginData)
+    }
+
+    fun logout() {
+        loginRepo.logout()
     }
 
 }

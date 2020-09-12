@@ -1,5 +1,7 @@
 package com.example.enigma_bank.ui.login.screen
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +14,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.enigma_bank.R
 import com.example.enigma_bank.ui.login.Login
+import com.example.enigma_bank.ui.login.LoginResponse
 import com.example.enigma_bank.ui.login.LoginViewModel
 import com.example.enigma_bank.ui.user.UserViewModel
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -20,8 +23,17 @@ class LoginFragment : Fragment() {
 
     private val loginViewModel by activityViewModels<LoginViewModel>()
     private val userViewModel by activityViewModels<UserViewModel>()
-    private var users: List<Login> = listOf(Login())
+    private var userData: LoginResponse = LoginResponse()
     private lateinit var navController: NavController
+    private var sharedPreferences: SharedPreferences? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedPreferences = activity?.getSharedPreferences(
+            getString(R.string.shared_preferences_name),
+            Context.MODE_PRIVATE
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,10 +46,6 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         navController = Navigation.findNavController(view)
-        loginViewModel.getAllLogin()
-        loginViewModel.allLogin.observe(viewLifecycleOwner, Observer {
-            users = it
-        })
 
         login_button.setOnClickListener {
             val inputUsername = login_username_input.text.toString()
@@ -46,15 +54,18 @@ class LoginFragment : Fragment() {
             if (inputUsername.isEmpty() || inputPassword.isEmpty()) {
                 Toast.makeText(activity, "User credentials must be filled!", Toast.LENGTH_SHORT).show()
             } else {
-                for (user in users) {
-                    if (user.username == inputUsername && user.password == inputPassword) {
-                        userViewModel.getUserByID(user.login_id)
-                        userViewModel.user.observe(viewLifecycleOwner, Observer {
-                            Toast.makeText(activity, "Welcome ${inputUsername}!", Toast.LENGTH_SHORT).show()
+                loginViewModel.login(Login(inputUsername, inputPassword))
+                loginViewModel.userData.observe(viewLifecycleOwner, {
+                    if (it != null) {
+                        println("LEVEL ${it.user.user_level}")
+                        if (it.user.user_level == "2") {
+                            Toast.makeText(activity, "Welcome ${it.user.user_f_name}!", Toast.LENGTH_SHORT).show()
                             navController.navigate(R.id.action_to_userHomeFragment)
-                        })
+                        }
+                    } else {
+                        Toast.makeText(activity, "Username atau Password salah", Toast.LENGTH_SHORT).show()
                     }
-                }
+                })
             }
         }
     }

@@ -16,4 +16,5 @@
     <string name="template_amount_30">$30</string>
     <string name="transfer_success">Transfer Success</string>
     <string name="btn_done">DONE</string>
+    <string name="shared_preferences_name">com.example.enigma_bank</string>
 </resources>

@@ -9,8 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.liveData
 import androidx.navigation.Navigation
 import com.example.enigma_bank.R
+import com.example.enigma_bank.ui.login.LoginViewModel
 import com.example.enigma_bank.ui.transaction.TransactionViewModel
 import com.example.enigma_bank.ui.user.User
 import com.example.enigma_bank.ui.user.UserViewModel
@@ -18,6 +20,7 @@ import kotlinx.android.synthetic.main.fragment_user_home.*
 
 class UserHomeFragment : Fragment() {
 
+    private val loginViewModel: LoginViewModel by activityViewModels<LoginViewModel>()
     private val userViewModel by activityViewModels<UserViewModel>()
     private val transactionViewModel by activityViewModels<TransactionViewModel>()
     private var user: User = User()
@@ -39,10 +42,13 @@ class UserHomeFragment : Fragment() {
         })
 
         transfer_button.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putInt("user_owner_id", user.login_owner_id)
+//            val bundle = Bundle()
+//            bundle.putInt("user_owner_id", user.login_owner_id)
+//
+//            Navigation.findNavController(view).navigate(R.id.action_to_transactionDestinationInputFragment, bundle)
+            loginViewModel.logout()
+            Navigation.findNavController(view).navigate(R.id.action_to_loginFragment)
 
-            Navigation.findNavController(view).navigate(R.id.action_to_transactionDestinationInputFragment, bundle)
         }
 
         history_button.setOnClickListener {
